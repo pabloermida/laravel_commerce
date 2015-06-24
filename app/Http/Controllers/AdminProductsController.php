@@ -23,4 +23,8 @@ class AdminProductsController extends Controller
         return view('product', compact('products'));
     }
 
+    public function create()
+    {
+        return "Create Product";
+    }
 }

@@ -23,5 +23,19 @@ class AdminCategoriesController extends Controller
         return view('category', compact('categories'));
     }
 
+    public function create()
+    {
+        return "Create Category";
+    }
+
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $category = $this->categoryModel->fill($input);
+        $category->save();
+        return redirect('categories');
+    }
+
+
 
 }
