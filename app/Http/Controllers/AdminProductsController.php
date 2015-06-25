@@ -27,4 +27,19 @@ class AdminProductsController extends Controller
     {
         return "Create Product";
     }
+
+    public function show($id)
+    {
+        return "Show Product " . $id;
+    }
+
+    public function update($id)
+    {
+        return "Update Product " . $id;
+    }
+
+    public function destroy($id)
+    {
+        return "Delete Product " . $id;
+    }
 }

@@ -36,6 +36,19 @@ class AdminCategoriesController extends Controller
         return redirect('categories');
     }
 
+    public function show($id)
+    {
+        return "Show Category " . $id;
+    }
 
+    public function update($id)
+    {
+        return "Update Category " . $id;
+    }
+
+    public function destroy($id)
+    {
+        return "Delete Category " . $id;
+    }
 
 }
