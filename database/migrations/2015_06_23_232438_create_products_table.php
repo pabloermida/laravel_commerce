@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->timestamps();
         });
+
+
     }
 
     /**

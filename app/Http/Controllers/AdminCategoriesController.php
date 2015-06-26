@@ -10,45 +10,48 @@ use CodeCommerce\Category;
 
 class AdminCategoriesController extends Controller
 {
-    private $categories;
+    private $categoryModel;
 
     public function __construct(Category $category)
     {
-        $this->categories = $category;
+        $this->categoryModel = $category;
     }
 
     public function index()
     {
-        $categories = $this->categories->all();
-        return view('category', compact('categories'));
+        $categories = $this->categoryModel->all();
+        return view('categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return "Create Category";
+        return view('categories.create');
     }
 
-    public function store(Request $request)
+    public function store(Requests\CategoryRequest $request)
     {
         $input = $request->all();
         $category = $this->categoryModel->fill($input);
         $category->save();
-        return redirect('categories');
+        return redirect()->route('categories');
     }
 
-    public function show($id)
+    public function edit($id)
     {
-        return "Show Category " . $id;
+        $category = $this->categoryModel->find($id);
+        return view('categories.edit', compact('category'));
     }
 
-    public function update($id)
+    public function update(Requests\CategoryRequest $request, $id)
     {
-        return "Update Category " . $id;
+        $category = $this->categoryModel->find($id)->update($request->all());
+        return redirect()->route('categories');
     }
 
     public function destroy($id)
     {
-        return "Delete Category " . $id;
+        $this->categoryModel->find($id)->delete();
+        return redirect()->route('categories');
     }
 
 }

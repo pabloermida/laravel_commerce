@@ -10,36 +10,47 @@ use CodeCommerce\Product;
 
 class AdminProductsController extends Controller
 {
-    private $products;
+    private $productModel;
 
     public function __construct(Product $product)
     {
-        $this->products = $product;
+        $this->productModel = $product;
     }
 
     public function index()
     {
-        $products = $this->products->all();
-        return view('product', compact('products'));
+        $products = $this->productModel->all();
+        return view('products.index', compact('products'));
     }
 
     public function create()
     {
-        return "Create Product";
+        return view('products.create');
     }
 
-    public function show($id)
+    public function store(Requests\ProductRequest $request)
     {
-        return "Show Product " . $id;
+        $input = $request->all();
+        $category = $this->productModel->fill($input);
+        $category->save();
+        return redirect()->route('products');
     }
 
-    public function update($id)
+    public function edit($id)
     {
-        return "Update Product " . $id;
+        $product = $this->productModel->find($id);
+        return view('products.edit', compact('product'));
+    }
+
+    public function update(Requests\ProductRequest $request, $id)
+    {
+        $product = $this->productModel->find($id)->update($request->all());
+        return redirect()->route('products');
     }
 
     public function destroy($id)
     {
-        return "Delete Product " . $id;
+        $this->productModel->find($id)->delete();
+        return redirect()->route('products');
     }
 }
