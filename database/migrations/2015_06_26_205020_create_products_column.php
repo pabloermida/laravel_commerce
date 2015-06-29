@@ -26,8 +26,8 @@ class CreateProductsColumn extends Migration
     public function down()
     {
         Schema::table('products', function ($table) {
-            $table->dropColumn('featured');
-            $table->dropColumn('recommend');
+            $table->removeColumn('featured');
+            $table->removeColumn('recommend');
         });
     }
 }
