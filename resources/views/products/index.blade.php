@@ -25,9 +25,10 @@
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->featured }}</td>
                 <td>{{ $product->recommend }}</td>
-                <td><a href="{{ route('products.edit', ['id'=>$product->id]) }}">Edit</a> | <a href="{{ route('products.destroy', ['id'=>$product->id]) }}">Delete</a></td>
+                <td><a href="{{ route('products.images', ['id'=>$product->id]) }}">Images</a> | <a href="{{ route('products.edit', ['id'=>$product->id]) }}">Edit</a> | <a href="{{ route('products.destroy', ['id'=>$product->id]) }}">Delete</a></td>
             </tr>
         @endforeach
     </table>
+    {!! $products->render() !!}
 </div>
 @endsection
