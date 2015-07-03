@@ -31,10 +31,7 @@ Route::group(['prefix'=>'admin'], function() {
 
 });
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'StoreController@index');
 
 Route::get('index','WelcomeController@index');
 
