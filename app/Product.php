@@ -23,6 +23,17 @@ class Product extends Model
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
+    public function getTagsToTextAttribute()
+    {
+        $arrTags = [];
+        foreach ($this->tags as $tag) {
+            $arrTags[] = $tag->name;
+        }
+
+        return implode(',', $arrTags);
+    }
+
+
     public function destroyImages()
     {
         foreach ($this->images() as $image) {

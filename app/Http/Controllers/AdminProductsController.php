@@ -6,6 +6,7 @@ use CodeCommerce\Category;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use CodeCommerce\Http\Requests\ProductImageRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -14,15 +15,17 @@ use League\Flysystem\AwsS3v3\AwsS3Adapter;
 class AdminProductsController extends Controller
 {
     private $productModel;
+    private $tagModel;
 
-    public function __construct(Product $product)
+    public function __construct(Product $product, Tag $tag)
     {
         $this->productModel = $product;
+        $this->tagModel = $tag;
     }
 
     public function index()
     {
-        $products = $this->productModel->paginate(10);
+        $products = $this->productModel->paginate(100);
         return view('products.index', compact('products'));
     }
 
@@ -35,8 +38,12 @@ class AdminProductsController extends Controller
     public function store(Requests\ProductRequest $request)
     {
         $input = $request->all();
-        $category = $this->productModel->fill($input);
-        $category->save();
+        $product = $this->productModel->fill($input);
+        $product->save();
+
+        $tagIds = $this->tagModel->saveTags($request->input('tags'));
+        $product->tags()->sync($tagIds);
+
         return redirect()->route('products');
     }
 
@@ -50,6 +57,9 @@ class AdminProductsController extends Controller
     public function update(Requests\ProductRequest $request, $id)
     {
         $product = $this->productModel->find($id)->update($request->all());
+        $tagIds = $this->tagModel->saveTags($request->input('tags'));
+        $product = $this->productModel->find($id);
+        $product->tags()->sync($tagIds);
         return redirect()->route('products');
     }
 

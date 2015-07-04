@@ -23,6 +23,10 @@
             {!! Form::textarea('description', $product->description, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
+            {!! Form::label('tags') !!}
+            {!! Form::textarea('tags', $product->tags_to_text, ['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
             {!! Form::label('price') !!}
             {!! Form::text('price', $product->price, ['class'=>'form-control']) !!}
         </div>
