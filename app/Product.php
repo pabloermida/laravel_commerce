@@ -33,7 +33,6 @@ class Product extends Model
         return implode(',', $arrTags);
     }
 
-
     public function destroyImages()
     {
         foreach ($this->images() as $image) {
@@ -42,5 +41,20 @@ class Product extends Model
             }
         }
         return true;
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured','=','1');
+    }
+
+    public function scopeRecommend($query)
+    {
+        return $query->where('recommend','=','1');
+    }
+
+    public function scopeOfCategory($query, $type)
+    {
+        return $query->where('category_id','=',$type);
     }
 }
