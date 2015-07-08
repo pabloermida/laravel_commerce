@@ -1,4 +1,3 @@
-
 @extends ('store.store')
 
 @section('categories')

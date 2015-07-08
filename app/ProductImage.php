@@ -16,6 +16,7 @@ class ProductImage extends Model
 
     public function getLocationAttribute()
     {
-        return Storage::disk('s3')->getDriver()->getAdapter()->getClient()->getObjectUrl(Config::get('filesystems.disks.s3.bucket'), $this->id . "." . $this->extension);
+        //return Storage::disk('s3')->getDriver()->getAdapter()->getClient()->getObjectUrl(Config::get('filesystems.disks.s3.bucket'), $this->id . "." . $this->extension);
+        return url('uploads/' . $this->id . "." . $this->extension);
     }
 }
