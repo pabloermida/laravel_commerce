@@ -30,7 +30,7 @@ elixir(function(mix) {
         'main.js',
     ], 'public/js/all.js');
 
-    mix.version(['css/all.css']);
+    mix.version(['css/all.css', 'js/all.js']);
 
     mix.copy('resources/assets/fonts','public/build/fonts');
 });
