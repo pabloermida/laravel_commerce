@@ -8,7 +8,7 @@
     <title>Home | E-Shop</title>
 
 
-    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
+    <link href="{{ url(elixir('css/all.css')) }}" rel="stylesheet">
 
 
 
@@ -137,7 +137,7 @@
 
 
 
-<script src="{{ elixir('js/all.js') }}"></script>
+<script src="{{ url(elixir('js/all.js')) }}"></script>
 
 </body>
 </html>

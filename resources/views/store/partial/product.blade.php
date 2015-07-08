@@ -36,6 +36,11 @@
                                             Adicionar no Carrinho
                                         </a>
                                 </span>
+                <p>
+                    @foreach($product->tags as $tag)
+                        <a href="{{ route('store.tag', ['id'=>$tag->id]) }}" class="btn btn-default">{{ $tag->name }}</a>
+                    @endforeach
+                </p>
             </div>
             <!--/product-information-->
         </div>
