@@ -42,7 +42,7 @@ class StoreController extends Controller
         $categories = Category::all();
         $tag = Tag::find($id);
         $products = $tag->products()->get();
-        
+
         return view('store.tag', compact('categories','tag','products'));
     }
 
