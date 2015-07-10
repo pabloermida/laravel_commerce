@@ -42,6 +42,16 @@ class CartController extends Controller
     public function destroy($id)
     {
         $cart = $this->getCart();
+        $cart->destroy($id);
+
+        Session::set('cart', $cart);
+
+        return redirect()->route('cart');
+    }
+
+    public function remove ($id)
+    {
+        $cart = $this->getCart();
 
         $cart->remove($id);
         Session::set('cart', $cart);

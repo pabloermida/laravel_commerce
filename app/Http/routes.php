@@ -37,6 +37,7 @@ Route::get('product/{id}', ['as'=>'store.product', 'uses'=>'StoreController@prod
 Route::get('tag/{id}', ['as'=>'store.tag', 'uses'=>'StoreController@tag']);
 Route::get('cart', ['as'=>'cart', 'uses'=>'CartController@index']);
 Route::get('cart/add/{id}', ['as'=>'cart.add', 'uses'=>'CartController@add']);
+Route::get('cart/remove/{id}', ['as'=>'cart.remove', 'uses'=>'CartController@remove']);
 Route::get('cart/destroy/{id}', ['as'=>'cart.destroy', 'uses'=>'CartController@destroy']);
 
 Route::get('index','WelcomeController@index');

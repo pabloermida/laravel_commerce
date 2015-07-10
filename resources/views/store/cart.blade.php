@@ -29,7 +29,7 @@
                                 R$ {{ $item['price'] }}
                             </td>
                             <td class="cart_quantity">
-                               <a href="{{ route('cart.destroy', ['id'=>$k]) }}" class="btn btn-default">-</a> {{ $item['qtd'] }} <a href="{{ route('cart.add', ['id'=>$k]) }}" class="btn btn-default">+</a>
+                               <a href="{{ route('cart.remove', ['id'=>$k]) }}" class="btn btn-default">-</a> {{ $item['qtd'] }} <a href="{{ route('cart.add', ['id'=>$k]) }}" class="btn btn-default">+</a>
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price">R$ {{ $item['price'] * $item['qtd'] }}</p>

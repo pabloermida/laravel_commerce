@@ -18,6 +18,11 @@ class Cart {
         $this->items = [];
     }
 
+    public function all()
+    {
+        return $this->items;
+    }
+
     public function add($id, $name, $price)
     {
         $this->items += [
@@ -35,13 +40,12 @@ class Cart {
             $this->items[$id]['qtd']--;
         }
         else {
-            unset($this->items[$id]);
+            destroy($id);
         }
     }
 
-    public function all()
-    {
-        return $this->items;
+    public function destroy($id) {
+        unset($this->items[$id]);
     }
 
     public function getTotal()
