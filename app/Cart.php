@@ -31,7 +31,12 @@ class Cart {
     }
 
     public function remove($id) {
-        unset($this->items[$id]);
+        if ($this->items[$id]['qtd'] > 1) {
+            $this->items[$id]['qtd']--;
+        }
+        else {
+            unset($this->items[$id]);
+        }
     }
 
     public function all()
