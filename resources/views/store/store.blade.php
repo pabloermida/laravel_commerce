@@ -45,17 +45,20 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="/"><span>CodeCommerce</span></a>
+                        <a href="{{url('/')}}"><span>CodeCommerce</span></a>
                     </div>
 
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="http://commerce.dev:10088/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a href="{{ route('account.orders') }}"><i class="fa fa-user"></i> Minha conta</a></li>
                             <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
-                            <li><a href="http://commerce.dev:10088/auth/login"><i class="fa fa-lock"></i> Login</a></li>
+                            @if (Auth::guest())
+                            <li><a href="{{url('auth/login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                            @else
+                            <li><a href="{{url('auth/logout')}}"><i class="fa fa-lock"></i> Logout ({{ Auth::user()->name }})</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -77,7 +80,7 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="/" class="active">Home</a></li>
+                            <li><a href="{{url('/')}}" class="active">Home</a></li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="shop.html">Products</a></li>
