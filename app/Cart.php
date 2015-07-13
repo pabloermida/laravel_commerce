@@ -40,7 +40,7 @@ class Cart {
             $this->items[$id]['qtd']--;
         }
         else {
-            destroy($id);
+            $this->destroy($id);
         }
     }
 
@@ -56,6 +56,11 @@ class Cart {
             $total += $item['qtd'] * $item['price'];
         }
         return $total;
+    }
+
+    public function clear()
+    {
+        $this->items = [];
     }
 
 }
