@@ -36,4 +36,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function orders(){
         return $this->hasMany('CodeCommerce\Order');
     }
+
+    public function isAdmin(){
+        return $this->is_admin;
+    }
 }

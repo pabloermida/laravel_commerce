@@ -2,7 +2,11 @@
 
 Route::pattern('id', '[0-9]+');
 
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function() {
+Route::group(['prefix'=>'admin', 'middleware'=>'admin'], function() {
+    Route::get('/', function(){
+        return view('home');
+    });
+
     Route::group(['prefix'=>'categories'], function() {
         Route::get('/', ['as'=>'categories','uses'=>'AdminCategoriesController@index']);
         Route::post('/', ['as'=>'categories.store','uses'=>'AdminCategoriesController@store']);
@@ -27,11 +31,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function() {
             Route::get('destroy/{id}/image', ['as'=>'products.image.destroy', 'uses'=>'AdminProductsController@destroyImage']);
         });
     });
-
-
 });
 
 Route::get('/', 'StoreController@index');
+Route::get('/home', 'StoreController@index');
 Route::get('category/{id}', ['as'=>'store.category', 'uses'=>'StoreController@category']);
 Route::get('product/{id}', ['as'=>'store.product', 'uses'=>'StoreController@product']);
 Route::get('tag/{id}', ['as'=>'store.tag', 'uses'=>'StoreController@tag']);

@@ -18,6 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \CodeCommerce\Http\Middleware\VerifyCsrfToken::class,
+
     ];
 
     /**
@@ -29,5 +30,6 @@ class Kernel extends HttpKernel
         'auth' => \CodeCommerce\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \CodeCommerce\Http\Middleware\RedirectIfAuthenticated::class,
+        'admin' => \CodeCommerce\Http\Middleware\AdminMiddleware::class,
     ];
 }
